@@ -1,0 +1,487 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #07090d;
+    --card: #111419;
+    --border: #292d34;
+    --text: #f2f2f2;
+    --muted: #858a93;
+
+    --green: #b7ff19;
+    --red: #ff3030;
+    --orange: #ff7138;
+    --blue: #5865f2;
+    --cyan: #00f2ea;
+    --pink: #ff3e9d;
+}
+
+html {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at 5% 0%,
+            rgba(255, 80, 30, 0.13),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 95% 40%,
+            rgba(30, 100, 255, 0.10),
+            transparent 35%
+        ),
+        var(--bg);
+
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 35px 18px 30px;
+}
+
+.profile {
+    width: 100%;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.official {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    margin-bottom: 24px;
+    color: #9a9da3;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.official span {
+    width: 6px;
+    height: 6px;
+    display: block;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow:
+        0 0 8px var(--green),
+        0 0 18px rgba(183, 255, 25, 0.4);
+}
+
+.profile-area {
+    width: 100%;
+    height: 145px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar-container {
+    width: 112px;
+    height: 112px;
+    position: relative;
+    z-index: 5;
+    margin: 0 auto;
+}
+
+.avatar-ring {
+    position: absolute;
+    inset: -7px;
+    border: 1px solid rgba(183, 255, 25, 0.45);
+    border-radius: 50%;
+    box-shadow:
+        0 0 12px rgba(183, 255, 25, 0.12);
+    animation: pulse 3s ease-in-out infinite;
+}
+
+.avatar {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border: 3px solid #111;
+    border-radius: 50%;
+}
+
+.character {
+    width: 85px;
+    height: 120px;
+    position: absolute;
+    object-fit: contain;
+    z-index: 3;
+    pointer-events: none;
+    animation: floating 4s ease-in-out infinite;
+}
+
+.character-left {
+    left: 8px;
+    bottom: 0;
+    filter: drop-shadow(
+        0 0 12px rgba(255, 90, 30, 0.35)
+    );
+    animation-delay: -1s;
+}
+
+.character-right {
+    right: 8px;
+    bottom: 0;
+    filter: drop-shadow(
+        0 0 12px rgba(80, 130, 255, 0.40)
+    );
+    animation-delay: -2s;
+}
+
+h1 {
+    margin-top: 18px;
+    color: var(--text);
+    font-size: 27px;
+    font-weight: 500;
+    letter-spacing: -1px;
+}
+
+h1 span {
+    margin-left: 3px;
+    color: var(--green);
+    font-size: 18px;
+}
+
+.username {
+    margin-top: 8px;
+    color: #ff673e;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.description {
+    margin-top: 12px;
+    color: #999da5;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.links {
+    width: 100%;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+    z-index: 5;
+}
+
+.link-card {
+    width: 100%;
+    min-height: 68px;
+    padding: 10px 14px;
+
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    color: #ffffff;
+    text-decoration: none;
+
+    border: 1px solid transparent;
+    border-radius: 14px;
+
+    transition:
+        transform 0.2s ease,
+        filter 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.link-card:active {
+    transform: scale(0.975);
+}
+
+@media (hover: hover) {
+    .link-card:hover {
+        transform: translateY(-3px);
+        filter: brightness(1.12);
+    }
+
+    .link-card:hover .arrow {
+        transform: translateX(3px);
+    }
+}
+
+.icon {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+    overflow: hidden;
+
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.icon img {
+    width: 24px;
+    height: 24px;
+    display: block;
+    object-fit: contain;
+}
+
+.link-info {
+    min-width: 0;
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.link-info strong {
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.link-info small {
+    width: 100%;
+    color: rgba(255, 255, 255, 0.68);
+    font-size: 10px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.arrow {
+    flex-shrink: 0;
+    color: rgba(255, 255, 255, 0.70);
+    font-size: 25px;
+    line-height: 1;
+    transition: transform 0.2s ease;
+}
+
+.kick {
+    background: linear-gradient(
+        135deg,
+        rgba(83, 255, 77, 0.28),
+        rgba(50, 130, 45, 0.18)
+    );
+
+    border-color: rgba(83, 255, 77, 0.70);
+
+    box-shadow:
+        0 0 25px rgba(83, 255, 77, 0.10);
+}
+
+.kick .icon {
+    background: rgba(83, 255, 77, 0.20);
+}
+
+.youtube {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 50, 50, 0.28),
+        rgba(150, 25, 25, 0.18)
+    );
+
+    border-color: rgba(255, 50, 50, 0.70);
+
+    box-shadow:
+        0 0 25px rgba(255, 50, 50, 0.10);
+}
+
+.youtube .icon {
+    background: rgba(255, 50, 50, 0.20);
+}
+
+.instagram {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 100, 120, 0.28),
+        rgba(180, 45, 100, 0.18)
+    );
+
+    border-color: rgba(255, 100, 120, 0.70);
+
+    box-shadow:
+        0 0 25px rgba(255, 100, 120, 0.10);
+}
+
+.instagram .icon {
+    background: rgba(255, 100, 120, 0.20);
+}
+
+.discord {
+    background: linear-gradient(
+        135deg,
+        rgba(88, 101, 242, 0.30),
+        rgba(45, 55, 150, 0.18)
+    );
+
+    border-color: rgba(88, 101, 242, 0.75);
+
+    box-shadow:
+        0 0 25px rgba(88, 101, 242, 0.12);
+}
+
+.discord .icon {
+    background: rgba(88, 101, 242, 0.22);
+}
+
+.tiktok {
+    background: linear-gradient(
+        135deg,
+        rgba(0, 242, 234, 0.20),
+        rgba(255, 0, 80, 0.22)
+    );
+
+    border-color: rgba(255, 0, 80, 0.70);
+
+    box-shadow:
+        0 0 25px rgba(255, 0, 80, 0.10);
+}
+
+.tiktok .icon {
+    background: rgba(0, 0, 0, 0.35);
+}
+
+.livepix {
+    background: linear-gradient(
+        135deg,
+        rgba(183, 255, 25, 0.25),
+        rgba(0, 180, 180, 0.18)
+    );
+
+    border-color: rgba(183, 255, 25, 0.70);
+
+    box-shadow:
+        0 0 25px rgba(183, 255, 25, 0.10);
+}
+
+.livepix .icon {
+    background: rgba(183, 255, 25, 0.18);
+}
+
+.footer {
+    margin-top: 30px;
+    color: #777c84;
+    text-align: center;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+}
+
+.footer span {
+    margin-right: 6px;
+}
+
+.footer b {
+    margin-left: 4px;
+    color: var(--green);
+}
+
+@keyframes floating {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+
+    50% {
+        transform: scale(1.04);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+}
+
+@media (max-width: 360px) {
+    .container {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .profile-area {
+        height: 135px;
+    }
+
+    .avatar-container {
+        width: 105px;
+        height: 105px;
+    }
+
+    .character {
+        width: 72px;
+        height: 105px;
+    }
+
+    .character-left {
+        left: 0;
+    }
+
+    .character-right {
+        right: 0;
+    }
+
+    .link-card {
+        min-height: 64px;
+        padding: 9px 11px;
+        border-radius: 13px;
+    }
+
+    .icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .icon img {
+        width: 22px;
+        height: 22px;
+    }
+
+    .link-info strong {
+        font-size: 12px;
+    }
+
+    .link-info small {
+        font-size: 9px;
+    }
+}
